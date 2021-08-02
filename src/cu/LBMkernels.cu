@@ -3,6 +3,7 @@
 #include "include/LBMkernels.cuh"
 #include "include/utils.cuh"
 #include "include/SWE.cuh"
+#include "include/PDEfeq.cuh"
 #include "include/BC.cuh"
 #include "../include/structs.h"
 #include "../include/macros.h"
@@ -54,9 +55,9 @@ __global__ void LBMpull(const configStruct config,
 					#elif BC1 == 4
 						SBC(localf, j, b1, b2);
 					#elif BC1 == 5
-						UBC1(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2, localMacroscopic);
+						UBC1(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2);
 					#elif BC1 == 6
-						UBC2(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2, localMacroscopic);
+						UBC2(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2);
 					#endif
 
 			#if BC2 != 0
@@ -71,9 +72,9 @@ __global__ void LBMpull(const configStruct config,
 					#elif BC2 == 4
 						localf[j] = SBC(localf, j, b1, b2);
 					#elif BC2 == 5
-						localf[j] = BC1User(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2, localMacroscopic);
+						localf[j] = BC1User(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2);
 					#elif BC2 == 6
-						localf[j] = BC2User(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2, localMacroscopic);
+						localf[j] = BC2User(localf, f1, i, j, config.Lx, config.Ly, ex, ey, b1, b2);
 					#endif
 			#endif
 
