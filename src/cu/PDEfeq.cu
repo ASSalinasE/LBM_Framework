@@ -18,11 +18,11 @@ __device__ void calculateFeqHE(prec* feq, prec* localMacroscopic, prec e){
 }
 
 __device__ void calculateFeqWE(prec* feq, prec* localMacroscopic, prec e){
-  
+	// Needs more complex modifications
 }
 
 __device__ void calculateFeqNSE(prec* feq, prec* localMacroscopic, prec e){
-  prec factor = 1.0 / 9;	
+  	prec factor = 1.0 / 9;	
 	prec localrho = localMacroscopic[0];
 	prec localux = localMacroscopic[1];
 	prec localuy = localMacroscopic[2];
